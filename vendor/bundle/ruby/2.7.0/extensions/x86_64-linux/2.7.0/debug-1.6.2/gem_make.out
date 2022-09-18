@@ -1,0 +1,16 @@
+current directory: /home/ajayip/Projects/phase5_project-api/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+/usr/share/rvm/rubies/ruby-2.7.4/bin/ruby -I /usr/share/rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0 -r ./siteconf20220918-3036-1oroy6i.rb extconf.rb
+creating Makefile
+
+current directory: /home/ajayip/Projects/phase5_project-api/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" clean
+
+current directory: /home/ajayip/Projects/phase5_project-api/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR="
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/ajayip/Projects/phase5_project-api/vendor/bundle/ruby/2.7.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 debug.so ./.gem.20220918-3036-155se29/debug
