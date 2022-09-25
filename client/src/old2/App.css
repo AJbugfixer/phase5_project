@@ -3,42 +3,35 @@
   margin: 0;
   box-sizing: border-box;
 }
-
-.home {
+.home{
   width: 100%;
   height: 100vh;
   background-color: #04292e;
   color: #fff;
   padding-top: 150px;
 }
-
-.home h1 {
+.home h1{
   font-size: 45px;
 }
-
-.home h1 span,
-.desc h1 span {
+.home h1 span{
   color: rgb(7, 170, 7);
   font-weight: 600;
 }
-
-.home p {
+.home p{
   font-size: 25px;
 }
-
-.btn {
+.btn{
   padding: 10px 30px;
-  font-weight: 600;
+ font-weight: 600;
   border-radius: 0 !important;
 }
-
-.main-img {
+.main-img{
   width: 100%;
   height: 500px;
 }
 
 @media (max-width:768px) {
-  .home {
+  .home{
     height: auto;
   }
 }
@@ -46,36 +39,33 @@
 
 
 /* == */
-.products {
+.products{
   padding: 75px 0;
-
+ 
 }
-
-.p-img {
+.p-img{
   width: 100%;
   height: 300px;
 }
-
-.products-p .card {
-  box-shadow: 0 10px 20px rgb(2, 58, 2);
+.products-p .card{
+box-shadow: 0 10px 20px rgb(2, 58, 2);
   border: none !important;
 
 }
-
-.price {
+.price{
   display: flex;
   justify-content: space-between;
 }
 
 .products-p .card .overlay {
-  position: absolute;
-  bottom: 0;
+  position: absolute; 
+  bottom: 0; 
   background: #04292e;
-  /* Black see-through */
-  color: #f1f1f1;
+   /* Black see-through */
+  color: #f1f1f1; 
   width: 100%;
   transition: .5s ease;
-  opacity: 0;
+  opacity:0;
   color: white;
   font-size: 20px;
   padding: 20px;
@@ -88,198 +78,121 @@
 }
 
 
-.desc {
+.desc{
   padding: 75px 0;
   background: #04292e;
 }
-
-.side-img {
+.side-img{
   padding-top: 20px;
   height: 500px;
   margin-left: -50px;
 }
-
-.desc h1 {
+.desc h1{
   color: #fff;
 }
-
-.desc p {
+.desc p{
   color: #fff;
 }
-
-footer {
+footer{
   padding: 50px 0;
-
+  
   width: 100%;
-
+  
 }
-
-.foot-img {
+.foot-img{
   width: 100%;
   height: 250px;
 }
-
-footer ul {
+footer ul{
   list-style-type: none;
 }
-
-footer ul li {
+footer ul li{
   font-size: 26px;
   list-style-type: none;
   text-decoration: none;
-  color: black;
+  color:black;
 }
-
-footer ul li a {
-
-  color: black;
+footer ul li a{
+  
+  color:black;
 }
-
-footer ul li a:hover {
+footer ul li a:hover{
   text-decoration: none;
-  color: black;
+  color:black;
 }
-
-.products-p .btn {
+.products-p .btn{
   padding: 8px 20px;
 }
-
-.inp {
+.inp{
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
 
 }
 
-.products .form-group {
+.products .form-group{
   width: 300px;
-
-
+  
+  
 }
 
 .products .form-control {
-  border: 3px solid rgb(9, 219, 72) !important;
-
+  border:3px solid rgb(9, 219, 72) !important;
+  
 }
-
-.products .form-control:focus {
-
-  box-shadow: none;
-
+.products .form-control:focus{
+  
+box-shadow: none;
+  
 }
-
-.details {
+.details{
   padding: 100px 0;
 }
-
-.p-im {
+.p-im{
   width: 100%;
   height: 350px;
 }
-
-.cart {
+.cart{
   padding: 75px 0;
 }
-
-.cart .card {
+.cart .card{
   box-shadow: 0 10px 20px rgb(2, 58, 2);
   border: none !important;
 
 }
-
-.cart-img {
+.cart-img{
   height: 300px;
 }
-
-.cartbox {
+.cartbox{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
-.cartbox p {
+.cartbox p{
   font-size: 20px;
   font-weight: 600;
 }
-
-.payment {
+.payment{
   padding: 75px 0;
 }
-
-.t-img {
+.t-img{
   width: 75px;
   height: 65px;
 }
-
-.table {
-  font-size: 25px;
+.table{
+  font-size:25px;
 }
-
-.address {
+.address{
   padding: 100px 0;
 }
-
-.address .card {
+.address .card{
   box-shadow: 0 10px 20px rgb(135, 205, 238);
   border: none !important;
   padding: 10px;
 }
-
-.or-img {
+.or-img{
   width: 150px;
   height: 130px;
 }
-
-.login {
+.login{
   padding: 75px 0;
-}
-
-/* Style all font awesome icons */
-.fa,
-.fa:hover {
-  padding: 10px;
-  font-size: 30px;
-  width: 60px;
-  text-align: center;
-  text-decoration: none;
-}
-
-/* Facebook */
-.fa-facebook,
-.fa-facebook:visited,
-.fa-facebook:hover {
-  background: #3B5998;
-  color: white;
-}
-
-/* Twitter */
-.fa-twitter,
-.fa-twitter:visited,
-.fa-twitter:hover {
-  background: #55ACEE;
-  color: white;
-}
-
-.fa-instagram,
-.fa-instagram:visited,
-.fa-instagram:hover {
-  background-image: linear-gradient(to top right, #feda75, #962fbf);
-  color: white;
-}
-
-.fa-youtube-play,
-.fa-youtube-play:visited,
-.fa-youtube-play:hover {
-  background-color: #FF0000;
-  color: white;
-}
-
-.fa-whatsapp,
-.fa-whatsapp:visited,
-.fa-whatsapp:hover {
-  background-color: #25D366;
-  color: white;
-}
-
-.mr-1 {
-  margin-right: 1rem;
 }
