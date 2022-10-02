@@ -3,20 +3,14 @@ import { NavLink, useHistory } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 import axios from "axios";
 import { getUser, initialize } from "../services/User";
-import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
 
 const Payment = () => {
   const his = useHistory();
   const datemail = localStorage.getItem("EcomEmail");
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState(datemail || "");
   const [phone, setPhone] = useState("");
   const [addr, setAddr] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
   const [yourAddress, setYourAddress] = useState([]);
   const [inputAddres, setInputAddres] = useState("");
   const [showaddress, setShowaddress] = useState(false);
@@ -64,14 +58,10 @@ const Payment = () => {
     e.preventDefault();
     const dat = localStorage.getItem("EcomUserId");
     const adddata = {
-      fname,
-      lname,
-      email,
-      phone,
+      name: name,
+      email: email,
+      phone: phone,
       address: addr,
-      city,
-      state,
-      zip,
       userId: dat,
     };
 
@@ -201,31 +191,17 @@ const Payment = () => {
                 <>
                   <div className="card">
                     <form onSubmit={onSub}>
-                      <div className="flex">
-                        <div className="form-group">
-                          <label>First Name:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="fname"
-                            placeholder="Enter first name"
-                            value={fname}
-                            onChange={(e) => setFname(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Last Name:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="lname"
-                            placeholder="Last name"
-                            value={lname}
-                            onChange={(e) => setLname(e.target.value)}
-                            required
-                          />
-                        </div>
+                      <div className="form-group">
+                        <label>Name:</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="name"
+                          placeholder="Enter name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
                       </div>
                       <div className="form-group">
                         <label>Email:</label>
@@ -242,67 +218,30 @@ const Payment = () => {
                       </div>
                       <div className="form-group">
                         <label>Phone:</label>
-                        <PhoneInput
+                        <input
+                          type="tel"
                           className="form-control"
+                          name="phone"
                           placeholder="Enter Phone"
                           value={phone}
-                          onChange={setPhone}
+                          onChange={(e) => setPhone(e.target.value)}
                           required
                         />
                       </div>
 
                       <div className="form-group">
-                        <label>Address:</label>
+                        <label>Full Address:</label>
 
                         <textarea
                           name="address"
                           id=""
                           className="form-control"
                           rows="3"
-                          placeholder="Add Apt #, Suite, Floor (optional)"
+                          placeholder="Enter Full Address"
                           value={addr}
                           onChange={(e) => setAddr(e.target.value)}
                           required
                         ></textarea>
-                      </div>
-
-                      <div className="flex">
-                        <div className="form-group">
-                          <label>City:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="city"
-                            placeholder="Enter City"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>State:</label>
-                          <input
-                            type="test"
-                            className="form-control"
-                            name="state"
-                            placeholder="Enter State"
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Zip:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="zip"
-                            placeholder="Enter Zip"
-                            value={zip}
-                            onChange={(e) => setZip(e.target.value)}
-                            required
-                          />
-                        </div>
                       </div>
 
                       <div className="text-center mb-5">
@@ -348,10 +287,9 @@ const Payment = () => {
                                   }
                                   required
                                 />
-                                {val.fname} {val.lname}
+                                {val.name}
                                 <br /> {val.email} <br /> {val.phone} <br />
-                                {val.address}, {val.city}, {val.state}-{val.zip}
-                                .
+                                {val.address}
                               </label>
                             </div>
                           </>

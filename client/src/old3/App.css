@@ -283,9 +283,3 @@ footer ul li a:hover {
 .mr-1 {
   margin-right: 1rem;
 }
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-}
