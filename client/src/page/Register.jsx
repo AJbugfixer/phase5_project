@@ -28,7 +28,7 @@ const Register = () => {
       })
       .catch((err) => {
         setStatus(true);
-        setMsg(err);
+        setMsg(err.message);
       });
   };
 

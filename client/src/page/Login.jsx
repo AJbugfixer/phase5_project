@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import CryptoJS from "crypto-js";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 // import axios from "axios";
 import { getUser, initialize } from "../services/User";
@@ -32,7 +33,12 @@ const Login = () => {
         if (!user) {
           setStatus(true);
           setMsg("No user found with provided email!");
-        } else if (user.password != password) {
+        } else if (
+          CryptoJS.AES.decrypt(
+            user.password,
+            process.env.REACT_APP_CRYPTO_SECRET || "supersecret"
+          ).toString(CryptoJS.enc.Utf8) != password
+        ) {
           setStatus(true);
           setMsg("Invalid email or password!");
         } else {

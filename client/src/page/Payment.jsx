@@ -80,7 +80,7 @@ const Payment = () => {
 
   const OnBuyNow = async (e) => {
     e.preventDefault();
-    his.push(`/myaccount`);
+    his.push(`/success`);
     //  console.log(inputAddres + payment)
     // const dat = localStorage.getItem("EcomUserId");
     // const datemail = localStorage.getItem("EcomEmail");
