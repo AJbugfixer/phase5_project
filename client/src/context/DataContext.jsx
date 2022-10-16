@@ -7,6 +7,7 @@ export const DataContext = createContext();
 export const ConText = (props) => {
   const [cart, setCart] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
+  const [savedAddresses, setSavedAddresses] = useState([]);
 
   const checkAuth = async () => {
     if (!localStorage.getItem("Ecomtoken")) return;
@@ -24,7 +25,9 @@ export const ConText = (props) => {
 
   return (
     <>
-      <DataContext.Provider value={{ cart, setCart, isAuth }}>
+      <DataContext.Provider
+        value={{ cart, setCart, isAuth, savedAddresses, setSavedAddresses }}
+      >
         {props.children}
       </DataContext.Provider>
     </>

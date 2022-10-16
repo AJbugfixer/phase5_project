@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import axios from "axios";
 import { getUser, initialize } from "../services/User";
+import { DataContext } from "../context/DataContext";
+
+import PhoneInput from "react-phone-number-input";
 
 const EditAdd = () => {
   const datemail = localStorage.getItem("EcomEmail");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState(datemail);
+
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [email, setEmail] = useState(datemail || "");
   const [phone, setPhone] = useState("");
   const [addr, setAddr] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
 
   const { id } = useParams();
+  const { savedAddresses, setSavedAddresses } = useContext(DataContext);
 
   const timeout = useRef(null);
   const his = useHistory();
@@ -37,13 +45,17 @@ const EditAdd = () => {
   }, []);
 
   const getaddress = async () => {
-    const res = await axios.get(`http://localhost:8000/getaddress/${id}`);
-    setName(res.data[0].name);
-    setEmail(res.data[0].email);
-    setPhone(res.data[0].phone);
-    setAddr(res.data[0].address);
-    //   console.log(res.data)
-    //     setYourAddress(res.data)
+    const savedAddress = savedAddresses.find(({ email }) => email == id);
+
+    const { address, city, fname, lname, phone, state, zip } = savedAddress;
+
+    setFname(fname);
+    setLname(lname);
+    setCity(city);
+    setAddr(address);
+    setPhone(phone);
+    setState(state);
+    setZip(zip);
   };
   useEffect(() => {
     getaddress();
@@ -51,15 +63,25 @@ const EditAdd = () => {
 
   const onSub = async (e) => {
     e.preventDefault();
-    const data = {
-      name: name,
-      email: email,
-      phone: phone,
-      address: addr,
-      userId: id,
-    };
 
-    // const res = await axios.post(`http://localhost:8000/editadd`, data);
+    setSavedAddresses((prev) =>
+      prev.map((tAaddress) => {
+        if (tAaddress.email == email)
+          return {
+            address: addr,
+            city,
+            fname,
+            lname,
+            phone,
+            state,
+            zip,
+            email: email,
+            userId: id,
+          };
+        else return tAaddress;
+      })
+    );
+
     his.push("/payment");
   };
 
@@ -72,14 +94,26 @@ const EditAdd = () => {
               <div className="card">
                 <form onSubmit={onSub}>
                   <div className="form-group">
-                    <label>Name:</label>
+                    <label>First Name:</label>
                     <input
                       type="text"
                       className="form-control"
-                      name="name"
-                      placeholder="Enter name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      name="fname"
+                      placeholder="Enter first name"
+                      value={fname}
+                      onChange={(e) => setFname(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Last Name:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="lname"
+                      placeholder="Last name"
+                      value={lname}
+                      onChange={(e) => setLname(e.target.value)}
                       required
                     />
                   </div>
@@ -98,30 +132,67 @@ const EditAdd = () => {
                   </div>
                   <div className="form-group">
                     <label>Phone:</label>
-                    <input
-                      type="tel"
+                    <PhoneInput
                       className="form-control"
-                      name="phone"
                       placeholder="Enter Phone"
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={setPhone}
                       required
                     />
                   </div>
 
                   <div className="form-group">
-                    <label>Full Address:</label>
+                    <label>Address:</label>
 
                     <textarea
                       name="address"
                       id=""
                       className="form-control"
                       rows="3"
-                      placeholder="Enter Full Address"
+                      placeholder="Add Apt #, Suite, Floor (optional)"
                       value={addr}
                       onChange={(e) => setAddr(e.target.value)}
                       required
                     ></textarea>
+                  </div>
+
+                  <div className="flex">
+                    <div className="form-group">
+                      <label>City:</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="city"
+                        placeholder="Enter City"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>State:</label>
+                      <input
+                        type="test"
+                        className="form-control"
+                        name="state"
+                        placeholder="Enter State"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Zip:</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="zip"
+                        placeholder="Enter Zip"
+                        value={zip}
+                        onChange={(e) => setZip(e.target.value)}
+                        required
+                      />
+                    </div>
                   </div>
 
                   <div className="text-center mb-5">

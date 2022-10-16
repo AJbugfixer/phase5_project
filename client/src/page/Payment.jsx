@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
-import axios from "axios";
 import { getUser, initialize } from "../services/User";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
@@ -17,13 +16,12 @@ const Payment = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
-  const [yourAddress, setYourAddress] = useState([]);
   const [inputAddres, setInputAddres] = useState("");
   const [showaddress, setShowaddress] = useState(false);
   const [payment, setPayment] = useState("");
   const [UserId, setUserId] = useState("");
 
-  const { cart, setCart } = useContext(DataContext);
+  const { cart, savedAddresses, setSavedAddresses } = useContext(DataContext);
   const [total, setTotal] = useState("");
   var tot = 0;
 
@@ -75,7 +73,8 @@ const Payment = () => {
       userId: dat,
     };
 
-    setYourAddress((prev) => [...prev, adddata]);
+    setSavedAddresses((prev) => [...prev, adddata]);
+    // setYourAddress((prev) => [...prev, adddata]);
   };
 
   const OnBuyNow = async (e) => {
@@ -321,10 +320,10 @@ const Payment = () => {
               <div className="card">
                 <h3>Add Recived Address</h3>
                 <br />
-                {yourAddress.length ? (
+                {savedAddresses.length ? (
                   <>
                     <form onSubmit={OnBuyNow}>
-                      {yourAddress.map((val, ind) => {
+                      {savedAddresses.map((val, ind) => {
                         return (
                           <>
                             <button
@@ -360,11 +359,6 @@ const Payment = () => {
 
                       <h4>Choose payment option</h4>
 
-                      {/* <div className="form-check-inline">
-                               <label className="form-check-label">
-                                   <input type="radio" className="form-check-input" name="payment" value="cod" onChange={(e)=>setPayment(e.target.value)}  required/>Cod
-                               </label>
-                           </div> */}
                       <div className="form-check-inline">
                         <label className="form-check-label">
                           <input
